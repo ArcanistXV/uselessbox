@@ -337,13 +337,13 @@ int main (void)
 					resetflagA = 1;
 					break;
 				}
-				if (failflagA == 1){
-					targetApos += 10;
-					failflagA = 2;
-				}
 				if (failflagA == 2){
 					targetApos -=20;
 					failflagA = 3;
+				}
+				if (failflagA == 1){
+					targetApos += 10;
+					failflagA = 2;
 				}
 				if (failflagA == 0){//TODO
 					failflagA = 1;
