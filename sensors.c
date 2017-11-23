@@ -27,12 +27,13 @@
 #include <avr/io.h>
 
 #include "sensors.h"
+#include "stepper.h"
 
 #include <util/delay.h>
 
-void sensor_initialise();
-uint8_t north_home();
-uint8_t south_home();
+void sensor_initialise(void);
+uint8_t north_home(void);
+uint8_t south_home(void);
 uint8_t check_switchs(uint8_t current);
 
 void sensor_initialise(){
@@ -108,3 +109,4 @@ uint8_t check_switchs(uint8_t current){//input 0 or 1
 	
 	return 8; //if all good
 }
+

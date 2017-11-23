@@ -1,26 +1,32 @@
-/****************************************************************
+/***************************************************************
 
- *            Cool of Engineering Ltd
+Copyright 2015 Arcane Productions
 
- *            C212 City Campus, CPIT
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
- *            (c) CoE, 2015
+    http://www.apache.org/licenses/LICENSE-2.0
 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+
+ *           Arcane Productions
+ *           (c) AP, 2017
  *
-
- *     Filename: STEPPER.h
-
- *     Developer:Cameron McDonald
-
- *     Date:    27/7/2015
-
- *     Description:
-
- *            Header file of stepper driver
-
  *
-
- */
+ * 	Filename: stepper.h
+ * 	Developer:Cameron McDonald
+ * 	Date: 	  11/11/2017
+ * 	Description:
+ *		Source file of stepper driver
+ *
+ *-----------------------------------------------------------*/
 
  
 
@@ -32,47 +38,58 @@
 
 #ifndef F_CPU
 
-#define F_CPU 16000000ULL
+#define F_CPU 1000000ULL
 
 #endif
 
 #include <util/delay.h>
 
+
  
 
 //hardware connections
 
-#define STEPA_DDR      DDRE
+#define STEPA_DDR      DDRA
 
-#define STEPA_PORT     PORTE
+#define STEPA_PORT     PORTA
 
-#define STEPA_PIN		PINE
+#define STEPA_PIN		PINA
 
  
 
-#define STEPCD_DDR      DDRF
+#define STEPB_DDR      DDRC
 
-#define STEPCD_PORT     PORTF
+#define STEPB_PORT     PORTC
 
-#define STEPCD_PIN      PINF
+#define STEPB_PIN      PINC
+
 
  
 
 //pins for STEP ports
 
 
-#define ENABLE 	5	//enable
-#define DIR		4	//dir set
-#define STEP	3	//step on rishing edge	
-#define RESET	2	//reset
-#define MS1		1	//micro step, low - full step, high - half step
-#define VDD		0 //logig control, set to HIGH
+#define SAENABLE 	1	//enable
+#define SADIR		2	//dir set
+#define SASTEP	3	//step on rising edge	
+#define SARESET	4	//reset
+
+
+#define SAMS1		5	//micro step, low - full step, high - half step
+#define SAVDD		6 //logig control, set to HIGH
+
+#define SBENABLE 6
+#define SBDIR 5
+#define SBSTEP 4
+#define SBRESET 3
+#define SBMS1 2
+#define SBVDD 1
 
  
 
 //mask for CTRL pins
 
-#define STEPPER_MASK 0b11111100
+#define STEPPER_MASK 0b11111111
 
  
 
@@ -84,6 +101,11 @@
 
 //Function prototypes
 
-
+void StepToPos( int intenpos);
+int Stepper_initialise(void);
+void Step(uint8_t dir, uint8_t steps);
+void StepB(uint8_t dir, uint8_t steps);
+void North_Step_To_Home_Test(void);
+void A_Step_To_Home(void);
 
 #endif

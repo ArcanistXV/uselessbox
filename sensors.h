@@ -1,26 +1,32 @@
-/****************************************************************
+/***************************************************************
 
- *            Cool of Engineering Ltd
+Copyright 2015 Arcane Productions
 
- *            C212 City Campus, CPIT
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
- *            (c) CoE, 2015
+    http://www.apache.org/licenses/LICENSE-2.0
 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+
+ *           Arcane Productions
+ *           (c) AP, 2017
  *
-
- *     Filename: sensor.h
-
- *     Developer:Cameron McDonald
-
- *     Date:    27/7/2015
-
- *     Description:
-
- *            Header file of sensor driver
-
  *
-
- */
+ * 	Filename: stepper.h
+ * 	Developer:Cameron McDonald
+ * 	Date: 	  11/11/2017
+ * 	Description:
+ *		Source file of sensor inputs
+ *
+ *-----------------------------------------------------------*/
 
  
 
@@ -32,7 +38,7 @@
 
 #ifndef F_CPU
 
-#define F_CPU 16000000ULL
+#define F_CPU 1000000ULL
 
 #endif
 
@@ -42,11 +48,11 @@
 
 //hardware connections
 
-#define SENSOR_DDR      DDRF
+#define SENSOR_DDR      DDRE
 
-#define SENSOR_PORT     PORTF
+#define SENSOR_PORT     PORTE
 
-#define SENSOR_PIN		PINF
+#define SENSOR_PIN		PINE
 
 #define SWITCH_DDR		DDRB
 
@@ -59,8 +65,10 @@
 //pins for STEP ports
 
 
-#define NORTH_HOME 0
-#define SOUTH_HOME 1
+#define NORTH_HOME 7
+#define NORTH_BACK 5
+#define SOUTH_BACK 4
+#define SOUTH_HOME 2
 
  
 
@@ -77,10 +85,12 @@
  
 
 //Function prototypes
-
-uint8_t north_home();
-uint8_t south_home();
+void sensor_initialise(void);
+uint8_t north_home(void);
+uint8_t south_home(void);
 uint8_t check_switchs(uint8_t current);
+
+
 
 
 
